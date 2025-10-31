@@ -1,0 +1,7 @@
+/* small green-themed accents */
+body { background-color: #f4fff4; font-family: Arial, Helvetica, sans-serif; }
+.navbar-brand { font-size: 1.2rem; }
+.card { border-radius: 10px; }
+.table-success { background-color: #dff6e1 !important; }
+.btn-success { background-color: #2d7a34; border: none; }
+.btn-success:hover { background-color: #256828; }

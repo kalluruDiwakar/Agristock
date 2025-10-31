@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Available Stock Details</h2>
+
+<!-- 🔍 Search Bar -->
+<div class="search-bar">
+    <form method="get" action="{{ url_for('search') }}">
+        <input type="text" name="q" placeholder="Search by product or godown" value="{{ search_query if search_query else '' }}">
+        <button type="submit">🔍 Search</button>
+        {% if search_query %}
+            <a href="{{ url_for('home') }}" class="btn">Reset</a>
+        {% endif %}
+    </form>
+</div>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Godown</th>
+        <th>Location</th>
+        <th>Contact</th>
+        <th>Added By</th>
+    </tr>
+    {% if data %}
+        {% for item in data %}
+        <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+            <td>{{ item[4] }}</td>
+            <td>{{ item[5] }}</td>
+            <td>{{ item[6] }}</td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr><td colspan="7">No results found.</td></tr>
+    {% endif %}
+</table>
+
+<div class="login-register">
+    <a href="{{ url_for('login') }}" class="btn">🔑 Login</a>
+    <a href="{{ url_for('register') }}" class="btn">📝 Register</a>
+</div>
+{% endblock %}

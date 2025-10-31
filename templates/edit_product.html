@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Product - AgriStock{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center; color:#1b5e20;">✏️ Edit Product</h2>
+
+<form method="POST" style="max-width:500px; margin:20px auto; background-color:white; padding:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+    <label for="product">Product Name:</label><br>
+    <input type="text" id="product" name="product" value="{{ item[1] }}" required><br><br>
+
+    <label for="quantity">Quantity:</label><br>
+    <input type="number" id="quantity" name="quantity" value="{{ item[2] }}" required><br><br>
+
+    <label for="godown">Godown:</label><br>
+    <input type="text" id="godown" name="godown" value="{{ item[3] }}" required><br><br>
+
+    <label for="location">Location:</label><br>
+    <input type="text" id="location" name="location" value="{{ item[4] }}" required><br><br>
+
+    <label for="contact">Contact Number:</label><br>
+    <input type="text" id="contact" name="contact" value="{{ item[5] }}" required><br><br>
+
+    <button type="submit" class="btn" style="width:100%;">💾 Update Product</button>
+</form>
+
+<div style="text-align:center;">
+    <a href="{{ url_for('dashboard') }}" class="btn" style="background-color:#1b5e20;">⬅️ Back to Dashboard</a>
+</div>
+{% endblock %}
