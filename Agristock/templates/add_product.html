@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Add Product - AgriStock{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center; color:#1b5e20;">➕ Add New Product</h2>
+
+<form method="POST" style="max-width:500px; margin:20px auto; background-color:white; padding:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+    <label for="product">Product Name:</label><br>
+    <input type="text" id="product" name="product" required><br><br>
+
+    <label for="quantity">Quantity:</label><br>
+    <input type="number" id="quantity" name="quantity" required><br><br>
+
+    <label for="godown">Godown:</label><br>
+    <input type="text" id="godown" name="godown" required><br><br>
+
+    <label for="location">Location:</label><br>
+    <input type="text" id="location" name="location" required><br><br>
+
+    <label for="contact">Contact Number:</label><br>
+    <input type="text" id="contact" name="contact" required><br><br>
+
+    <button type="submit" class="btn" style="width:100%;">💾 Save Product</button>
+</form>
+
+<div style="text-align:center;">
+    <a href="{{ url_for('dashboard') }}" class="btn" style="background-color:#1b5e20;">⬅️ Back to Dashboard</a>
+</div>
+{% endblock %}

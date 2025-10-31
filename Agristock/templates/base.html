@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AgriStock{% endblock %}</title>
+    <style>
+        /* ---------- Global Styles ---------- */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f8e9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        nav {
+            text-align: center;
+            background-color: #388e3c;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+        nav a:hover {
+            background-color: #1b5e20;
+        }
+        main {
+            padding: 20px;
+            min-height: 70vh;
+        }
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            background-color: #43a047;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #2e7d32;
+        }
+
+        /* ---------- Table Styles ---------- */
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            width: 90%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        th, td {
+            border: 1px solid #c8e6c9;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #388e3c;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #e8f5e9;
+        }
+
+        /* ---------- Flash Messages ---------- */
+        .flash {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>🌾 AgriStock Management System</header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="{{ url_for('home') }}">🏠 Home</a>
+        {% if 'user' in session %}
+            <a href="{{ url_for('dashboard') }}">📦 Dashboard</a>
+            <a href="{{ url_for('add_product') }}">➕ Add Product</a>
+
+            {% if session['role'] == 'admin' %}
+                <a href="{{ url_for('dashboard') }}">👑 Admin Dashboard</a>
+            {% endif %}
+
+            <a href="{{ url_for('logout') }}">🚪 Logout ({{ session['user'] }})</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">🔑 Login</a>
+            <a href="{{ url_for('register') }}">📝 Register</a>
+        {% endif %}
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">
+                {% for msg in messages %}
+                    {{ msg }}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Page Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>© 2025 AgriStock | Designed by Diwakar 🌱</footer>
+</body>
+</html>

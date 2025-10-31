@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - AgriStock{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center; color:#1b5e20;">
+    Welcome, {{ session['user'] }}
+    {% if session['role'] == 'admin' %}👑 (Admin){% endif %}
+</h2>
+
+<a href="{{ url_for('add_product') }}" class="btn" style="display:block; width:200px; margin:15px auto; text-align:center;">
+    ➕ Add New Product
+</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Godown</th>
+        <th>Location</th>
+        <th>Contact</th>
+        <th>Added By</th>
+        <th>Actions</th>
+    </tr>
+
+    {% if data %}
+        {% for item in data %}
+        <tr {% if item[6] == session['user'] %} style="background-color:#e8f5e9;" {% endif %}>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+            <td>{{ item[4] }}</td>
+            <td>{{ item[5] }}</td>
+            <td>
+                {% if item[6] == session['user'] %}
+                    <b style="color:#1b5e20;">You</b>
+                {% else %}
+                    {{ item[6] }}
+                {% endif %}
+            </td>
+            <td>
+                {% if session['role'] == 'admin' or session['user'] == item[6] %}
+                    <a href="{{ url_for('edit', id=item[0]) }}" class="btn" style="background-color:#43a047;">✏️ Edit</a>
+                    <a href="{{ url_for('delete', id=item[0]) }}" class="btn" style="background-color:#d32f2f;" onclick="return confirm('Are you sure you want to delete this product?');">🗑️ Delete</a>
+                {% else %}
+                    🔒 Not allowed
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr><td colspan="8">No products found.</td></tr>
+    {% endif %}
+</table>
+{% endblock %}

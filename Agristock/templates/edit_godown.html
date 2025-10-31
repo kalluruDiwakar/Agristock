@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Edit Godown</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h4 class="text-success mb-3">✏ Edit Godown</h4>
+        <form method="post">
+          <div class="mb-3"><label class="form-label">Name</label><input name="name" value="{{ godown['name'] }}" class="form-control" required></div>
+          <div class="mb-3"><label class="form-label">Location</label><input name="location" value="{{ godown['location'] }}" class="form-control"></div>
+          <div class="mb-3"><label class="form-label">Contact</label><input name="contact" value="{{ godown['contact'] }}" class="form-control"></div>
+          <button class="btn btn-success">Update</button>
+          <a class="btn btn-secondary ms-2" href="{{ url_for('index') }}">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

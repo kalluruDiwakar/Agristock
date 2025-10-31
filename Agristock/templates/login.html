@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Login - AgriStock{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center; color:#1b5e20;">🔑 User Login</h2>
+
+<form method="POST" style="max-width:400px; margin:20px auto; background-color:white; padding:25px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required style="width:100%; padding:10px; margin-top:5px; border:1px solid #a5d6a7; border-radius:6px;"><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required style="width:100%; padding:10px; margin-top:5px; border:1px solid #a5d6a7; border-radius:6px;"><br><br>
+
+    <button type="submit" class="btn" style="width:100%;">🚀 Login</button>
+    <p><a href="{{ url_for('forgot_password') }}" style="color:#1b5e20; font-weight:bold;">Forgot Password?</a></p>
+
+</form>
+
+<div style="text-align:center;">
+    <p>Don't have an account?</p>
+    <a href="{{ url_for('register') }}" class="btn" style="background-color:#1b5e20;">📝 Register</a>
+</div>
+{% endblock %}
